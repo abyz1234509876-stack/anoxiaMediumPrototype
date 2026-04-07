@@ -1,0 +1,158 @@
+/* =============================================
+   ANOXIA — Stylesheet
+   Deep-ocean minimalist aesthetic
+   ============================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+/* --- CSS Variables --- */
+:root {
+  --bg:          #02040f;          /* near-black abyss          */
+  --neon:        #a7c2c9;          /* electric cyan              */
+  --neon-dim:    rgba(0, 212, 255, 0.35);
+  --neon-glow:   rgba(0, 212, 255, 0.12);
+  --text:        #a8cfd8;          /* muted aqua text            */
+  --text-dim:    rgba(168, 207, 216, 0.45);
+  --mono:        'Rajdhani', sans-serif;
+  --body-font:   'Rajdhani', sans-serif;
+}
+
+/* --- Reset & Base --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--body-font);
+  cursor: crosshair;
+}
+
+/* --- Canvas container fills viewport --- */
+#canvas-container {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+/* Make the p5 canvas fill its container */
+#canvas-container canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* --- UI Overlay --- */
+#ui {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 28px 36px 22px;
+
+  /* subtle frosted bar */
+  background: linear-gradient(
+    to bottom,
+    rgba(2, 4, 15, 0.88) 0%,
+    rgba(2, 4, 15, 0.0)  100%
+  );
+  pointer-events: none; /* let clicks pass to canvas */
+}
+
+/* Re-enable pointer events only for interactive children */
+#controls { pointer-events: all; }
+
+/* --- Title Block --- */
+#title-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+#title {
+  font-size: 32px;
+  color: var(--neon);
+}
+
+#subtitle {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+/* --- Slider Controls --- */
+#controls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+#controls label {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+#slider-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Count readout */
+#countDisplay {
+  font-family: var(--mono);
+  font-size: 1.05rem;
+  color: var(--neon);
+  text-shadow: 0 0 10px var(--neon-dim);
+  min-width: 2ch;
+  text-align: right;
+}
+
+/* --- Custom Range Slider --- */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: clamp(140px, 18vw, 240px);
+  height: 2px;
+  background: var(--neon-dim);
+  border-radius: 0;
+  outline: none;
+  cursor: pointer;
+  box-shadow: 0 0 8px var(--neon-glow);
+}
+
+/* Thumb — webkit */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--neon);
+  transition: transform 0.15s ease;
+}
+input[type="range"]:hover::-webkit-slider-thumb {
+  transform: scale(1.35);
+}
+
+/* Thumb — firefox */
+input[type="range"]::-moz-range-thumb {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  border: none;
+  background: var(--neon);
+  box-shadow: 0 0 8px var(--neon-dim);
+}
+
+/* Track — firefox */
+input[type="range"]::-moz-range-track {
+  background: var(--neon-dim);
+  height: 2px;
+}

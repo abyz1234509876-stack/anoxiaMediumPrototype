@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ANOXIA</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- p5.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
+</head>
+
+<body>
+
+  <!-- UI Overlay: title + slider control -->
+  <div id="ui">
+    <div id="title-block">
+      <span id="title">ANOXIA</span>
+    </div>
+
+    <div id="controls">
+      <label for="countSlider">MICROPLASTIC</label>
+      <div id="slider-row">
+        <input type="range" id="countSlider" min="1" max="40" value="8" />
+        <span id="countDisplay">08</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- p5.js canvas will be injected here -->
+  <div id="canvas-container"></div>
+
+  <script src="sketch.js"></script>
+</body>
+
+</html>

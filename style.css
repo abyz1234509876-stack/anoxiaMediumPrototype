@@ -7,11 +7,11 @@
 
 /* --- CSS Variables --- */
 :root {
-  --bg:          #02040f;          /* near-black abyss          */
-  --neon:        #a7c2c9;          /* electric cyan              */
+  --bg:          #02040f;
+  --neon:        #a7c2c9;
   --neon-dim:    rgba(0, 212, 255, 0.35);
   --neon-glow:   rgba(0, 212, 255, 0.12);
-  --text:        #a8cfd8;          /* muted aqua text            */
+  --text:        #a8cfd8;
   --text-dim:    rgba(168, 207, 216, 0.45);
   --mono:        'Rajdhani', sans-serif;
   --body-font:   'Rajdhani', sans-serif;
@@ -36,7 +36,6 @@ html, body {
   z-index: 0;
 }
 
-/* Make the p5 canvas fill its container */
 #canvas-container canvas {
   display: block;
   width: 100% !important;
@@ -52,18 +51,21 @@ html, body {
   align-items: flex-start;
   justify-content: space-between;
   padding: 28px 36px 22px;
-
-  /* subtle frosted bar */
   background: linear-gradient(
     to bottom,
     rgba(2, 4, 15, 0.88) 0%,
     rgba(2, 4, 15, 0.0)  100%
   );
-  pointer-events: none; /* let clicks pass to canvas */
+  pointer-events: none;
 }
 
-/* Re-enable pointer events only for interactive children */
-#controls { pointer-events: all; }
+#controls {
+  pointer-events: all;
+  display: flex;
+  flex-direction: row;         /* sliders sit side by side */
+  align-items: flex-start;
+  gap: 32px;
+}
 
 /* --- Title Block --- */
 #title-block {
@@ -75,53 +77,61 @@ html, body {
 #title {
   font-size: 32px;
   color: var(--neon);
-}
-
-#subtitle {
   font-family: var(--mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.22em;
-  color: var(--text-dim);
-  text-transform: uppercase;
+  letter-spacing: 0.12em;
 }
 
-/* --- Slider Controls --- */
-#controls {
+/* --- Each slider group --- */
+.slider-group {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 8px;
+  gap: 6px;
 }
 
-#controls label {
+.slider-header {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.slider-group label {
   font-family: var(--mono);
-  font-size: 0.6rem;
+  font-size: 0.58rem;
   letter-spacing: 0.25em;
   color: var(--text-dim);
   text-transform: uppercase;
 }
 
-#slider-row {
-  display: flex;
-  align-items: center;
-  gap: 14px;
+.unit-tag {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 0.15em;
+  color: rgba(168, 207, 216, 0.25);
+  text-transform: lowercase;
 }
 
-/* Count readout */
-#countDisplay {
+.slider-row-inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Count / value readout */
+.readout {
   font-family: var(--mono);
-  font-size: 1.05rem;
+  font-size: 1.0rem;
   color: var(--neon);
   text-shadow: 0 0 10px var(--neon-dim);
   min-width: 2ch;
   text-align: right;
 }
 
-/* --- Custom Range Slider --- */
+/* --- Custom Range Slider (shared) --- */
 input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
-  width: clamp(140px, 18vw, 240px);
+  width: clamp(100px, 14vw, 200px);
   height: 2px;
   background: var(--neon-dim);
   border-radius: 0;
@@ -130,7 +140,6 @@ input[type="range"] {
   box-shadow: 0 0 8px var(--neon-glow);
 }
 
-/* Thumb — webkit */
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 12px; height: 12px;
@@ -142,7 +151,6 @@ input[type="range"]:hover::-webkit-slider-thumb {
   transform: scale(1.35);
 }
 
-/* Thumb — firefox */
 input[type="range"]::-moz-range-thumb {
   width: 12px; height: 12px;
   border-radius: 50%;
@@ -151,7 +159,6 @@ input[type="range"]::-moz-range-thumb {
   box-shadow: 0 0 8px var(--neon-dim);
 }
 
-/* Track — firefox */
 input[type="range"]::-moz-range-track {
   background: var(--neon-dim);
   height: 2px;

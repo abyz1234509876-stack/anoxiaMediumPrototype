@@ -12,18 +12,50 @@
 
 <body>
 
-  <!-- UI Overlay: title + slider control -->
+  <!-- UI Overlay: title + slider controls -->
   <div id="ui">
     <div id="title-block">
       <span id="title">ANOXIA</span>
     </div>
 
     <div id="controls">
-      <label for="countSlider">MICROPLASTIC</label>
-      <div id="slider-row">
-        <input type="range" id="countSlider" min="1" max="40" value="8" />
-        <span id="countDisplay">08</span>
+
+      <!-- Microplastic -->
+      <div class="slider-group">
+        <div class="slider-header">
+          <label for="countSlider">MICROPLASTIC</label>
+          <span class="unit-tag">particles</span>
+        </div>
+        <div class="slider-row-inner">
+          <input type="range" id="countSlider" min="1" max="40" value="8" />
+          <span id="countDisplay" class="readout">08</span>
+        </div>
       </div>
+
+      <!-- CO2 -->
+      <div class="slider-group">
+        <div class="slider-header">
+          <label for="co2Slider">CO₂</label>
+          <span class="unit-tag">ppm</span>
+        </div>
+        <div class="slider-row-inner">
+          <input type="range" id="co2Slider" min="0" max="100" value="0" />
+          <span id="co2Display" class="readout">00</span>
+        </div>
+      </div>
+
+      <!-- Phosphorus -->
+      <div class="slider-group">
+        <div class="slider-header">
+          <label for="phosphorusSlider">PHOSPHORUS</label>
+          <span class="unit-tag">mg/L</span>
+        </div>
+        <div class="slider-row-inner">
+          <input type="range" id="phosphorusSlider" min="0" max="100" value="0" />
+          <span id="phosphorusDisplay" class="readout">00</span>
+        </div>
+      </div>
+
     </div>
   </div>
 
